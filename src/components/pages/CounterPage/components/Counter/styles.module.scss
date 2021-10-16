@@ -1,0 +1,52 @@
+.wrapper {
+  max-width: 30vw;
+  padding: 25px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.display {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: #cfdaec;
+  color: black;
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+
+.parityTypeText {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  padding: 5px 25px;
+  border-radius: 10px;
+  background-color: #eef0f6;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.controlButton {
+  font-size: 24px;
+  background: #B3DBC0;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+
+  &:first-of-type {
+    margin-right: 25px;
+  }
+}
+.resetButton {
+  background: #d1f137;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  margin-right: 25px;
+}
