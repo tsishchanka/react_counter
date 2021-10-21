@@ -1,88 +1,46 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import Counter from "../components/Counter";
+import { PARITY_TYPES } from "../../constants";
 
 class CounterPageContainer extends Component {
-
   state = {
     countValue: 0,
-    parityType: 'even',
-    color: 'black',
+    parityType: PARITY_TYPES.EVEN,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.countValue !== this.state.countValue) {
+      const recalculatedParityType =
+        this.state.countValue % 2 === 0 ? PARITY_TYPES.EVEN : PARITY_TYPES.ODD;
+      this.setState({ ...this.state, parityType: recalculatedParityType });
+    }
+  }
+
   handleIncrement = () => {
-
-    this.setState( (state)=>{
-      const newValue = state.countValue +1;
-      if (newValue %2 !== 0) {
-
-        const parityTypeOdd = "odd";
-
-        return {
-          countValue: newValue,
-          parityType: parityTypeOdd,
-          color: '#094d74',
-        }
-      } else {
-
-          const parityTypeEven = "even";
-
-          return {
-            countValue: newValue,
-            parityType: parityTypeEven,
-            color: 'black',
-          }
-
-        }
-    });
+    this.setState({ ...this.state, countValue: this.state.countValue + 1 });
   };
 
   handleDecrement = () => {
-    this.setState( (state)=>{
-      const newValue = Math.max(state.countValue -1, 0);
-
-      if (newValue %2 !== 0) {
-
-        const parityTypeOdd = "odd";
-
-        return {
-          countValue: newValue,
-          parityType: parityTypeOdd,
-          color: '#094d74',
-        }
-      } else {
-
-        const parityTypeEven = "even";
-
-        return {
-          countValue: newValue,
-          parityType: parityTypeEven,
-          color: 'black',
-        }
-      }
-    });
+    if (this.state.countValue > 0) {
+      this.setState({ ...this.state, countValue: this.state.countValue + 1 });
+    }
   };
 
   handleReset = () => {
-    this.setState( (state)=>{
-      const newValue = 0;
-      const parityTypeReset = "counter value was reset";
-      return {
-        countValue: newValue,
-        parityType: parityTypeReset,
-        color: 'black',
-      }
+    this.setState({
+      ...this.state,
+      countValue: 0,
     });
   };
 
   render() {
     return (
-      <Counter countValue={this.state.countValue}
-               handleIncrement={this.handleIncrement}
-               handleReset={this.handleReset}
-               handleDecrement={this.handleDecrement}
-               handleHiddenStyle={this.handleHiddenStyle}
-               parityType={this.state.parityType}
-               color={this.state.color}
+      <Counter
+        countValue={this.state.countValue}
+        handleIncrement={this.handleIncrement}
+        handleDecrement={this.handleDecrement}
+        handleReset={this.handleReset}
+        parityType={this.state.parityType}
       />
     );
   }
