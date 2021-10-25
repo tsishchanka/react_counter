@@ -1,16 +1,16 @@
 .wrapper {
-  max-width: 30vw;
+  max-width: 15vw;
   padding: 25px;
   border: 1px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .display {
-  max-width: 300px;
+  max-width: 60px;
   width: 100%;
   text-align: center;
   padding: 25px;
@@ -36,7 +36,7 @@
 .controlButton {
   font-size: 24px;
   background: #B3DBC0;
-  width: 100px;
+  width: 30px;
   height: 40px;
   border-radius: 10px;
 
@@ -51,3 +51,4 @@
   border-radius: 10px;
   margin-right: 25px;
 }
+

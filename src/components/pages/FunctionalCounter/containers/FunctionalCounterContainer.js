@@ -1,40 +1,16 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 import FunctionalCounterLayout from "../components/layout";
+import { useCounter } from "../../../../hooks";
 
 const FunctionalCounterContainer = () => {
-  const [countValue, setCountValue] = useState(0);
-
-  const handleIncrement = () => {
-    setCountValue(countValue + 1);
-  };
-
-  const handleDecrement = () => {
-    if (countValue > 0) {
-      setCountValue(countValue - 1);
-    }
-  };
-
-  const handleReset = () => {
-    setCountValue(0);
-  };
-
-  //didMount
-  useEffect(() => {}, []);
-
-  //didUpdate
-  useEffect(() => {}, [countValue]);
-
-  //unmount
-  useEffect(() => {
-    return () => {};
-  }, []);
+  const [count, increment, decrement, reset] = useCounter(0);
 
   return (
     <FunctionalCounterLayout
-      countValue={countValue}
-      handleIncrement={handleIncrement}
-      handleDecrement={handleDecrement}
-      handleReset={handleReset}
+      countValue={count}
+      handleIncrement={increment}
+      handleDecrement={decrement}
+      handleReset={reset}
     />
   );
 };

@@ -1,0 +1,35 @@
+.mainCounterButtons{
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+
+
+.mainCounterButton {
+  font-size: 24px;
+  background: #e0e70d;
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+}
+}
+.infoDisplay{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 600px;
+  margin: 10px auto;
+  .infoCounters{
+    margin: 20px auto 5px auto;
+  }
+}
+.countersSection {
+  display: flex;
+  justify-content: space-between;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+
+
+}
