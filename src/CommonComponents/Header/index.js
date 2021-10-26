@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ROUTES } from "../routes/routeNames";
+import { ROUTES } from "../../routes/routeNames";
 import styles from "./styles.module.scss";
 
 const Header = () => {
@@ -13,6 +13,9 @@ const Header = () => {
       </Link>
       <Link to={ROUTES.FUNCTIONAL_COUNTER}>
         <button>Functional Counter</button>
+      </Link>
+      <Link to={ROUTES.MAIN_COUNTER}>
+        <button>Main Counter</button>
       </Link>
     </div>
   );
