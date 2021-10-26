@@ -21,75 +21,65 @@ const MainCounterContainer = () => {
   }, [countersArray]);
 
   const handleAddCounter = useCallback(() => {
-    const countersArrayAdded = [...countersArray, FunctionalCounterContainer];
-    const mapped = countersArrayAdded.map((counter) => {
-      return {
-        countValue: 0,
-      };
-    });
+    const newCounter = { countValue: 0 };
 
-    setCountersArray(mapped);
+    setCountersArray((state) => {
+      const updatedCounters = state.map(({ countValue }) => ({
+        countValue: countValue % 2 === 0 ? countValue + 1 : countValue,
+      }));
+
+      return [...updatedCounters, newCounter];
+    });
   }, [countersArray]);
 
-  const handleRemoveCounter = useCallback(
-    (index) => {
-      const countersArrayCopy = [...countersArray];
-      if (numberOfCounters > 0) {
-        countersArrayCopy.splice(countersArrayCopy.length - 1, 1);
+  const handleRemoveCounter = useCallback((index) => {
+    setCountersArray((state) => {
+      const copy = [...state];
 
-        setCountersArray(countersArrayCopy);
+      copy.splice(copy.length - 1, 1);
+
+      return copy.map(({ countValue }) => ({
+        countValue: countValue % 2 !== 0 ? countValue - 1 : countValue,
+      }));
+    });
+  }, []);
+
+  const handleResetCounter = useCallback(() => {
+    setCountersArray([]);
+  }, []);
+
+  const handleIncrement = useCallback((counterIndex) => {
+    setCountersArray((state) => {
+      return state.map((counter, index) => ({
+        countValue:
+          counterIndex === index ? counter.countValue + 1 : counter.countValue,
+      }));
+    });
+  }, []);
+
+  const handleDecrement = useCallback(
+    (counterIndex) => {
+      if (countersArray[counterIndex].countValue > 0) {
+        setCountersArray((state) => {
+          return state.map((counter, index) => ({
+            countValue:
+              counterIndex === index
+                ? counter.countValue - 1
+                : counter.countValue,
+          }));
+        });
       }
     },
     [countersArray]
   );
 
-  const handleResetCounter = useCallback(() => {
-    const countersArrayCopy = [...countersArray];
-    countersArrayCopy.splice(0);
-    setCountersArray(countersArrayCopy);
-  }, [countersArray]);
-
-  const handleIncrement = useCallback(
-    (index) => {
-      const increasedValue = countersArray.map((counter, countIndex) => {
-        if (countIndex === index) {
-          counter.countValue++;
-        }
-        return counter;
-      });
-
-      setCountersArray(increasedValue);
-    },
-    [countersArray]
-  );
-
-  const handleDecrement = useCallback(
-    (index) => {
-      const decreasedValue = countersArray.map((counter, countIndex) => {
-        if (countIndex === index && counter.countValue > 0) {
-          counter.countValue--;
-        }
-        return counter;
-      });
-
-      setCountersArray(decreasedValue);
-    },
-    [countersArray]
-  );
-
-  const handleReset = useCallback(
-    (index) => {
-      const updatedState = countersArray.map((counter, countIndex) => {
-        if (countIndex === index) {
-          counter.countValue = 0;
-        }
-        return counter;
-      });
-
-      setCountersArray(updatedState);
-    },
-    [countersArray]
-  );
+  const handleReset = useCallback((counterIndex) => {
+    setCountersArray((state) => {
+      return state.map((counter, index) => ({
+        countValue: counterIndex === index ? 0 : counter.countValue,
+      }));
+    });
+  }, []);
 
   return (
     <MainCounter
